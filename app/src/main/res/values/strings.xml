@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">RappiTestApp</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="app_name">Rappi Interview App</string>
 
     <string name="category_top_rated">Top Rated</string>
     <string name="category_popular">Popular</string>
@@ -9,4 +7,10 @@
 
     <string name="search">Search</string>
     <string name="search_by_title">Search by title</string>
+    <string name="adult_content">This movie contains adult content</string>
+    <string name="no_adult_content">This movie does not contain adult content</string>
+    <string name="vote_average">Vote average: %1$.2f</string>
+    <string name="loading">Please Wait...</string>
+    <string name="no_movie">No movies found</string>
+    <string name="youtube_video_failed">Youtube video failed to play. Please try again.</string>
 </resources>

@@ -8,19 +8,19 @@
     android:layout_marginBottom="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
+    android:background="@drawable/recycler_item_selector"
+    android:foreground="?android:attr/selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/movie_thumbnail_iv"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/thumbnail_width"
+        android:layout_height="@dimen/thumbnail_height"
         android:layout_marginBottom="8dp"
         android:scaleType="centerInside"
-        android:background="#444444"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars[12]" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/movie_title_tv"
@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:contentDescription="movie title"
-        android:text="Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toEndOf="@+id/movie_thumbnail_iv"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +38,6 @@
         android:layout_height="wrap_content"
         app:layout_constrainedWidth="true"
         android:layout_marginLeft="8dp"
-        android:text="Description"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintStart_toEndOf="@+id/movie_thumbnail_iv"
         app:layout_constraintTop_toBottomOf="@+id/movie_title_tv" />

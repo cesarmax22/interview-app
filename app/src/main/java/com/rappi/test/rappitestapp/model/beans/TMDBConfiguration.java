@@ -1,4 +1,4 @@
-package com.rappi.test.rappitestapp.beans;
+package com.rappi.test.rappitestapp.model.beans;
 
 import com.google.gson.annotations.SerializedName;
 

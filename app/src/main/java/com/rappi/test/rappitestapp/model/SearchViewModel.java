@@ -1,4 +1,4 @@
-package com.rappi.test.rappitestapp.ui.view;
+package com.rappi.test.rappitestapp.model;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;

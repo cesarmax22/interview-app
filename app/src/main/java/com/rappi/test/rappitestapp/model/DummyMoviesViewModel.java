@@ -1,24 +1,19 @@
-package com.rappi.test.rappitestapp.ui.view;
+package com.rappi.test.rappitestapp.model;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
 
-import com.rappi.test.rappitestapp.beans.MovieCategory;
-import com.rappi.test.rappitestapp.beans.TMDBMovie;
-import com.rappi.test.rappitestapp.beans.TMDBMoviesResponse;
-import com.rappi.test.rappitestapp.ws.retrofit.API;
+import com.rappi.test.rappitestapp.model.beans.MovieCategory;
+import com.rappi.test.rappitestapp.model.beans.TMDBMovie;
+import com.rappi.test.rappitestapp.model.beans.TMDBMoviesResponse;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
+/**
+ * Intended to be used as a dummy provider while coding or testing.
+ */
 public class DummyMoviesViewModel extends MoviesViewModel {
 
     @Override

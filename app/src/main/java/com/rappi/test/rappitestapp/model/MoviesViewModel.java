@@ -1,20 +1,18 @@
-package com.rappi.test.rappitestapp.ui.view;
+package com.rappi.test.rappitestapp.model;
 
-import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
-import com.rappi.test.rappitestapp.beans.MovieCategory;
-import com.rappi.test.rappitestapp.beans.TMDBImagesConfigurations;
-import com.rappi.test.rappitestapp.beans.TMDBMovie;
-import com.rappi.test.rappitestapp.beans.TMDBMoviesResponse;
+import com.rappi.test.rappitestapp.model.beans.MovieCategory;
+import com.rappi.test.rappitestapp.model.beans.TMDBImagesConfigurations;
+import com.rappi.test.rappitestapp.model.beans.TMDBMovie;
+import com.rappi.test.rappitestapp.model.beans.TMDBMoviesResponse;
 import com.rappi.test.rappitestapp.ws.retrofit.API;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -37,7 +35,6 @@ public class MoviesViewModel extends ViewModel {
      */
     public static String RETROFIT_IMAGE_BASE_URL = null;
 
-    // TODO: should this be mutable?
     private MutableLiveData<TMDBImagesConfigurations> imagesConfigurations;
 
     /**
@@ -88,6 +85,7 @@ public class MoviesViewModel extends ViewModel {
     /**
      * It refreshes data from server and notifies accordingly based on model view pattern.
      */
+    // TODO: not being used so far
     public void refreshMovies() {
         loadMovies(movieCategory);
     }
@@ -108,7 +106,7 @@ public class MoviesViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<TMDBMovie> call, Throwable t) {
-                // TODO: what to do here?
+                // TODO: create a wrapper class that hold data AND status code (for errors i.e.)
             }
         });
     }
@@ -132,7 +130,7 @@ public class MoviesViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<TMDBImagesConfigurations> call, Throwable t) {
-                // TODO: what to do here?
+                // TODO: create a wrapper class that hold data AND status code (for errors i.e.)
             }
         });
     }
@@ -167,8 +165,7 @@ public class MoviesViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<TMDBMoviesResponse> call, Throwable t) {
-                // TODO: define what to do here
-                String x = "error!";
+                // TODO: create a wrapper class that hold data AND status code (for errors i.e.)
             }
         });
     }

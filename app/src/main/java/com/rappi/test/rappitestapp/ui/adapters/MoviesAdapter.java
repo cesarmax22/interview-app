@@ -12,9 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.rappi.test.rappitestapp.R;
-import com.rappi.test.rappitestapp.beans.TMDBMovie;
-import com.rappi.test.rappitestapp.ui.fragments.PlaceholderFragment;
-import com.rappi.test.rappitestapp.ui.view.MoviesViewModel;
+import com.rappi.test.rappitestapp.model.beans.TMDBMovie;
+import com.rappi.test.rappitestapp.model.MoviesViewModel;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,6 +22,7 @@ public class MoviesAdapter extends RecyclerView.Adapter {
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
 
+        TextView noMoviesTextView;
         TextView titleTextView;
         TextView descriptionTextView;
         ImageView thumbnailImageView;

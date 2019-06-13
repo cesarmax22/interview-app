@@ -1,11 +1,26 @@
-package com.rappi.test.rappitestapp.beans;
+package com.rappi.test.rappitestapp.model.beans;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Class representing response for a specific movie.
  */
-public class TMDBMovie {
+public class TMDBMovie implements Parcelable {
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        @Override
+        public TMDBMovie createFromParcel(Parcel parcel) {
+            return new TMDBMovie(parcel);
+        }
+
+        @Override
+        public TMDBMovie[] newArray(int size) {
+            return new TMDBMovie[size];
+        }
+    };
 
     private boolean adult;
     private String overview;
@@ -22,8 +37,24 @@ public class TMDBMovie {
     private float voteAverage;
     @SerializedName("poster_path")
     private String posterPath;
+    private TMDBVideos videos;
 
+    public TMDBMovie(Parcel in) {
+        adult = in.readByte() != 0;
+        overview = in.readString();
+        releaseDate = in.readString();
+        id = in.readInt();
+        title = in.readString();
+        originalTitle = in.readString();
+        popularity = in.readFloat();
+        voteCount = in.readInt();
+        voteAverage = in.readFloat();
+        posterPath = in.readString();
+        videos = in.readParcelable(TMDBVideos.class.getClassLoader());
+    }
 
+    public TMDBMovie() {
+    }
 
     public String getTitle() {
         return title;
@@ -103,5 +134,33 @@ public class TMDBMovie {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
+    }
+
+    public TMDBVideos getVideos() {
+        return videos;
+    }
+
+    public void setVideos(TMDBVideos videos) {
+        this.videos = videos;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeByte((byte) (adult ? 1 : 0));
+        parcel.writeString(overview);
+        parcel.writeString(releaseDate);
+        parcel.writeInt(id);
+        parcel.writeString(title);
+        parcel.writeString(originalTitle);
+        parcel.writeFloat(popularity);
+        parcel.writeInt(voteCount);
+        parcel.writeFloat(voteAverage);
+        parcel.writeString(posterPath);
+        parcel.writeParcelable(videos, flags);
     }
 }

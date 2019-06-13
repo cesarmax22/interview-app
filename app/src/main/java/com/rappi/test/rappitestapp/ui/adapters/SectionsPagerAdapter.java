@@ -2,14 +2,12 @@ package com.rappi.test.rappitestapp.ui.adapters;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.rappi.test.rappitestapp.R;
-import com.rappi.test.rappitestapp.beans.MovieCategory;
-import com.rappi.test.rappitestapp.ui.fragments.PlaceholderFragment;
+import com.rappi.test.rappitestapp.model.beans.MovieCategory;
+import com.rappi.test.rappitestapp.ui.fragments.MoviePlaceholderFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -27,7 +25,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PlaceholderFragment.newInstance(tabs[position]);
+        return MoviePlaceholderFragment.newInstance(tabs[position]);
     }
 
     @Nullable

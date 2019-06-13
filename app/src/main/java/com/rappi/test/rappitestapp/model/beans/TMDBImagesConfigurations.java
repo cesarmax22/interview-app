@@ -1,6 +1,4 @@
-package com.rappi.test.rappitestapp.beans;
-
-import com.google.gson.annotations.SerializedName;
+package com.rappi.test.rappitestapp.model.beans;
 
 public class TMDBImagesConfigurations {
 
