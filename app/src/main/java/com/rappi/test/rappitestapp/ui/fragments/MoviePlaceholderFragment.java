@@ -21,8 +21,8 @@ import com.rappi.test.rappitestapp.model.beans.TMDBMovie;
 import com.rappi.test.rappitestapp.model.beans.TMDBMoviesResponse;
 import com.rappi.test.rappitestapp.ui.adapters.MoviesAdapter;
 import com.rappi.test.rappitestapp.ui.adapters.MoviesRecyclerRowClickListener;
-import com.rappi.test.rappitestapp.model.MoviesViewModel;
-import com.rappi.test.rappitestapp.model.SearchViewModel;
+import com.rappi.test.rappitestapp.viewmodel.MoviesViewModel;
+import com.rappi.test.rappitestapp.viewmodel.SearchViewModel;
 
 import java.util.LinkedList;
 
@@ -70,10 +70,7 @@ public class MoviePlaceholderFragment extends Fragment implements MoviesRecycler
         searchViewModel = ViewModelProviders.of(getActivity()).get(SearchViewModel.class);
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
 
-        if (savedInstanceState == null) {
-            // only instantiate if activity is first time being created
-            moviesAdapter = new MoviesAdapter(getContext(), new LinkedList<TMDBMovie>(), searchViewModel.getSearchQuery(), this);
-        }
+        moviesAdapter = new MoviesAdapter(getContext(), new LinkedList<TMDBMovie>(), searchViewModel.getSearchQuery(), this);
 
         // start observing for search model updates. when getting an event, we know that we have to filter movies based on given query
         searchViewModel.getSearch().observe(this, new Observer<String>() {
@@ -88,7 +85,7 @@ public class MoviePlaceholderFragment extends Fragment implements MoviesRecycler
         moviesViewModel.getMovies((MovieCategory) getArguments().getSerializable(ARG_MOVIE_CATEGORY)).observe(this, new Observer<TMDBMoviesResponse>() {
             @Override
             public void onChanged(@Nullable TMDBMoviesResponse tmdbMovies) {
-                loadingDialog.hide();
+                loadingDialog.dismiss();
 
                 moviesAdapter = new MoviesAdapter(getContext(), tmdbMovies.getResults(), searchViewModel.getSearchQuery(), MoviePlaceholderFragment.this);
                 moviesRecyclerView.setAdapter(moviesAdapter);
@@ -108,6 +105,13 @@ public class MoviePlaceholderFragment extends Fragment implements MoviesRecycler
     }
 
     @Override
+    public void onPause() {
+        loadingDialog.dismiss();
+
+        super.onPause();
+    }
+
+    @Override
     public void onMovieRowClicked(final int movieId) {
         loadingDialog.show();
 
@@ -115,13 +119,13 @@ public class MoviePlaceholderFragment extends Fragment implements MoviesRecycler
         moviesViewModel.getMovieDetails(movieId).observe(this, new Observer<TMDBMovie>() {
             @Override
             public void onChanged(@Nullable TMDBMovie tmdbMovie) {
-                loadingDialog.hide();
+                loadingDialog.dismiss();
 
-                if (tmdbMovie.getVideos() != null && tmdbMovie.getVideos().getResults() != null && tmdbMovie.getVideos().getResults().length > 0) {
+                if (tmdbMovie != null && tmdbMovie.getVideos() != null && tmdbMovie.getVideos().getResults() != null && tmdbMovie.getVideos().getResults().length > 0) {
                     MovieDetailsDialogFragment.newInstance(tmdbMovie)
                             .show(getFragmentManager(), "movie-detail-dialog");
                 } else {
-                    Toast.makeText(getContext(), "Video not available!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Movie details not available!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

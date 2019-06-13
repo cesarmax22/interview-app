@@ -14,8 +14,9 @@ import retrofit2.http.Query;
  */
 public interface API {
 
+    // "themoviedb" base url. in a real app this key should be stored in a more secure/dynamic way! gradle.properties for example
     String BASE_URL = "https://api.themoviedb.org/3/";
-    // "themoviedb" api key. in a real app this key should be stored in a more secure way!
+    // "themoviedb" api key. in a real app this key should be stored in a more secure/dynamic way! gradle.properties for example
     String API_KEY = "3454517d63aea88f2cbc53a050f126cf";
 
     /**

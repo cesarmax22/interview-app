@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.rappi.test.rappitestapp.R;
 import com.rappi.test.rappitestapp.model.beans.TMDBMovie;
-import com.rappi.test.rappitestapp.model.MoviesViewModel;
+import com.rappi.test.rappitestapp.viewmodel.MoviesViewModel;
 
 import java.util.LinkedList;
 import java.util.List;

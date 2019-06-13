@@ -9,7 +9,7 @@ import android.support.v7.widget.SearchView;
 
 import com.rappi.test.rappitestapp.R;
 import com.rappi.test.rappitestapp.ui.adapters.SectionsPagerAdapter;
-import com.rappi.test.rappitestapp.model.SearchViewModel;
+import com.rappi.test.rappitestapp.viewmodel.SearchViewModel;
 
 /**
  * Main entry activity for this application.

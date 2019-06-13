@@ -1,16 +1,17 @@
-package com.rappi.test.rappitestapp.model;
+package com.rappi.test.rappitestapp.viewmodel;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
-import android.widget.Toast;
 
 import com.rappi.test.rappitestapp.model.beans.MovieCategory;
 import com.rappi.test.rappitestapp.model.beans.TMDBImagesConfigurations;
 import com.rappi.test.rappitestapp.model.beans.TMDBMovie;
 import com.rappi.test.rappitestapp.model.beans.TMDBMoviesResponse;
 import com.rappi.test.rappitestapp.ws.retrofit.API;
+import com.rappi.test.rappitestapp.ws.retrofit.APIHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,10 +19,14 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MoviesViewModel extends ViewModel {
+/**
+ * View model class in charge of loading data and notifying about its changes related to movies.
+ *
+ * Please note that this class extends {@link AndroidViewModel} because we need an
+ * explicit reference to the application context.
+ */
+public class MoviesViewModel extends AndroidViewModel {
 
     // we will fetch this data async
     protected MutableLiveData<TMDBMoviesResponse> moviesList;
@@ -36,6 +41,10 @@ public class MoviesViewModel extends ViewModel {
     public static String RETROFIT_IMAGE_BASE_URL = null;
 
     private MutableLiveData<TMDBImagesConfigurations> imagesConfigurations;
+
+    public MoviesViewModel(@NonNull Application application) {
+        super(application);
+    }
 
     /**
      * Get movies remotely.
@@ -91,12 +100,7 @@ public class MoviesViewModel extends ViewModel {
     }
 
     private void loadMovieDetails(final int movieId) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        API api = retrofit.create(API.class);
+        API api = APIHelper.getAPIClient(getApplication().getApplicationContext());
         Call<TMDBMovie> call = api.getMovieDetail(movieId, API.API_KEY);
         call.enqueue(new Callback<TMDBMovie>() {
             @Override
@@ -112,12 +116,7 @@ public class MoviesViewModel extends ViewModel {
     }
 
     private void loadImagesConfigurations() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        API api = retrofit.create(API.class);
+        API api = APIHelper.getAPIClient(getApplication().getApplicationContext());
         Call<TMDBImagesConfigurations> call = api.getImagesConfiguration(API.API_KEY);
         call.enqueue(new Callback<TMDBImagesConfigurations>() {
             @Override
@@ -136,12 +135,7 @@ public class MoviesViewModel extends ViewModel {
     }
 
     private void loadMovies(@NonNull MovieCategory category) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        API api = retrofit.create(API.class);
+        API api = APIHelper.getAPIClient(getApplication().getApplicationContext());
         Call<TMDBMoviesResponse> call;
         switch (category) {
             case TOP_RATED:

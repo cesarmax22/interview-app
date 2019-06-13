@@ -1,5 +1,6 @@
-package com.rappi.test.rappitestapp.model;
+package com.rappi.test.rappitestapp.viewmodel;
 
+import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
@@ -50,6 +51,10 @@ public class DummyMoviesViewModel extends MoviesViewModel {
         moviesList = new MutableLiveData<>();
         ((MutableLiveData<TMDBMoviesResponse>) moviesList).setValue(dummyResponse);
         return moviesList;
+    }
+
+    public DummyMoviesViewModel(@NonNull Application application) {
+        super(application);
     }
 
     @Override
