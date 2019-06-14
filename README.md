@@ -1,5 +1,16 @@
 # interview-app
 This app fetches movies info from a public repo (themoviedb) and displays its content.
+If you tap on any row, you'll be able to see movie details and watch its trailer (if available).
+The app works online/offline. In order to work offline, you must have loaded data at least once.
+
+
+- Please note that v3 version of "themoviedb" API has been used (instead of v4) because there are almost none API doc for v4.
+- Please note that we are only loading one single page (1st page) for every movie list. I think this is enough for this interview app purposes.
+- Youtube library was included to show videos.
+- No Unit testing was performed. If it's really necessary for this interview just let me know.
+- No logging has been performed in this app.
+- I haven't taken care of http failure cases. I don't think it's necessary for this interview. Let me know if this isn't enough.
+
 
 # Las capas de la aplicación (por ejemplo capa de persistencia, vistas, red, negocio, etc) y qué clases pertenecen a cual
 Las capas arquitectonicas de la aplicacion son las siguientes:
